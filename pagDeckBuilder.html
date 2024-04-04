@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deck Builder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h1>Deck Builder</h1>
+
+  <div>
+    <label for="card-input">Digite o nome da carta:</label>
+    <input type="text" id="card-input">
+  </div>
+
+  <div>
+    <h2>Cartas disponíveis:</h2>
+    <ul id="available-cards">
+      <!-- Cartas disponíveis serão exibidas aqui -->
+    </ul>
+  </div>
+
+  <div>
+    <h2>Sua Decklist:</h2>
+    <textarea id="decklist"></textarea>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const cardInput = document.getElementById('card-input');
+  const availableCardsList = document.getElementById('available-cards');
+  const decklistTextarea = document.getElementById('decklist');
+
+  let availableCards = [];
+
+  // Carrega a lista de cartas do arquivo JSON
+  fetch('cards.json')
+    .then(response => response.json())
+    .then(data => {
+      availableCards = data;
+    })
+    .catch(error => console.error('Erro ao carregar lista de cartas:', error));
+
+  // Função para exibir as cartas disponíveis que correspondem à entrada do usuário
+  function showAvailableCards() {
+    const searchTerm = cardInput.value.trim().toLowerCase();
+    const filteredCards = availableCards.filter(card => card.nome.toLowerCase().includes(searchTerm));
+    
+    availableCardsList.innerHTML = '';
+    filteredCards.forEach(card => {
+      const li = document.createElement('li');
+      li.textContent = card.nome;
+      li.addEventListener('click', () => addCardToDecklist(card));
+      availableCardsList.appendChild(li);
+    });
+  }
+
+  // Função para adicionar uma carta à decklist
+  function addCardToDecklist(card) {
+    const cardName = card.nome;
+    const decklistLines = decklistTextarea.value.split('\n');
+    let cardFound = false;
+
+    // Verifica se a carta já está na decklist
+    decklistLines.forEach((line, index) => {
+      if (line.includes(cardName)) {
+        // Incrementa a quantidade se a carta já está na decklist
+        const parts = line.split(' ');
+        const quantity = parseInt(parts[0]) + 1;
+        decklistLines[index] = `${quantity} ${cardName}`;
+        cardFound = true;
+      }
+    });
+
+    // Se a carta não estiver na decklist, adiciona-a com quantidade 1
+    if (!cardFound) {
+      decklistLines.push(`1 ${cardName}`);
+    }
+
+    // Atualiza o texto da decklist
+    decklistTextarea.value = decklistLines.join('\n');
+  }
+
+  // Event listener para atualizar as cartas disponíveis quando o usuário digitar na caixa de input
+  cardInput.addEventListener('input', showAvailableCards);
+});
+
+  </script>
+</body>
+
+</html>

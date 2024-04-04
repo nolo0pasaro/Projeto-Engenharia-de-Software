@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+      body {
+      background-color: #251232; 
+    }
+  .headercaixa {
+      background-color: #5B3774;
+      width: 100%;
+      height: 13%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      padding-left: 20px;
+      background-attachment: fixed;
+  }
+  
+  .headercaixamenor{
+    background-color: #8a69a1;
+    width: 100%;
+    height: 2%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    align-items: center;
+    background-attachment: fixed;
+  }
+  .texto1 {
+    background-color: transparent;
+    color: #a475c6;
+    font-size: 30px;
+    font-family: Arial;
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 150px;
+    left: 100px;
+    z-index: 2;
+    background-attachment: fixed;
+  }
+  .texto2 {
+    background-color: transparent;
+    color: white;
+    font-size: 25px;
+    font-family: Arial;
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 155px;
+    left: 530px;
+    z-index: 2;
+  }
+  .texto3 {
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    font-family: Arial;
+    width: 85%;
+    height: 50px;
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    z-index: 2;
+  }
+  .texto4 {
+    background-color: transparent;
+    color: white;
+    font-size: 15px;
+    font-family: Arial;
+    width: 90%;
+    height: 50px;
+    position: absolute;
+    top: 280px;
+    left: 100px;
+    z-index: 2;
+  }
+  .escolha-formatos {
+    background-color: transparent;
+    color: #a475c6;
+    font-size: 25px;
+    font-family: Arial;
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 350px;
+    left: 100px;
+    z-index: 2;
+  }
+  .formatos {
+    background-image: url("Selecao-formatos.png");
+    width: 355px;
+    height: 60px;
+    position: absolute;
+    top: 390px;
+    left: 100px;
+    z-index: 2;
+  }
+  .mais {
+    background-image: url("mais.png");
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 390px;
+    left: 480px;
+  }
+  .escolha-cores {
+    background-color: transparent;
+    color: #a475c6;
+    font-size: 25px;
+    font-family: Arial;
+    width: 500px;
+    height: 50px;
+    position: absolute;
+    top: 510px;
+    left: 100px;
+    z-index: 2;
+  }
+  .branco {
+    background-image: url("Branco.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 100px;
+  }
+  .azul {
+    background-image: url("Azul.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 320px;
+  }
+  .preto {
+    background-image: url("Preto.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 540px;
+  }
+  .vermelho {
+    background-image: url("Vermelho.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 760px;
+  }
+  .verde {
+    background-image: url("Verde.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 980px;
+  }
+  .sem-cor {
+    background-image: url("Sem-cor.png");
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 550px;
+    left: 1200px;
+  }
+  .headercaixaselecao {
+    background-color: #5B3774;
+    width: 1300px;
+    height: 40px;
+    position: absolute;
+    top: 630px;
+    left: 100px;
+    z-index: 1;
+  }
+  .hofri {
+    background-image: url("hofri.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 100px;
+  }
+  .sheoldred {
+    background-image: url("sheoldred.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 320px;
+  }
+  .barato {
+    background-image: url("barato.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 540px;
+  }
+  .monogreen {
+    background-image: url("monogreen.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 760px;
+  }
+  .urza {
+    background-image: url("urza.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 980px;
+  }
+  .drawcontrol {
+    background-image: url("drawcontrol.png");
+    width: 200px;
+    height: 140px;
+    position: absolute;
+    top: 700px;
+    left: 1200px;
+  }
+
+  .center-buttons {
+    display: flex;
+  }
+  .botao-formatos:hover {
+    filter: brightness(140%);
+  }
+  .header-button {
+    width: 125px;
+    height: 30px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    margin: 0 5px; 
+    cursor: pointer; 
+  }
+  .logo-button {
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    margin: 0 5px; 
+    cursor: pointer;
+  }
+  .logo-botao{
+    background-image: url("logo2.png");
+  }
+  .carta-botao {
+    background-image: url("cartasbotao.png");
+  }
+
+  .deck-botao {
+    background-image: url("decksbotao.png");
+  }
+  .deck-botao:hover {
+    filter: brightness(140%);
+  }
+
+  .carta-botao:hover {
+    filter: brightness(140%);
+  }
+
+  .rectangle {
+    background-color: #5B3774;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial;
+  }
+
+</style>
+</head>
+    
+<body>
+  <div class="texto1">Decks de Magic: the Gathering:</div>
+  <div class="texto2">Lista de nossos decks</div>
+  <div class="texto3">Explore uma lista completa de decks de Magic: the Gathering!  Ache rapidamente aquilo que precisa usando nossos filtros. Novos decks diariamente, baseado nas criações de jogadores, ou listas oficias da Wizards of the Coast! 
+    Queremos ter certeza que iremos ter os melhores decks para  o meta atual, ou os melhores decks para jogar casualmente com seus amigos!
+  </div>
+  <div class="texto4">Cansado de procurar, ou só quer achar uma carta? Explore nossas listas de cartas</div>
+  <div class="escolha-formatos">Escolha um ou mais formatos:</div>
+  <div class="formatos"></div>
+  <div class="mais"></div>
+  <div class="escolha-cores">Escolha uma ou mais cores:</div>
+  <div class="branco"></div>
+  <div class="azul"></div>
+  <div class="preto"></div>
+  <div class="vermelho"></div>
+  <div class="verde"></div>
+  <div class="sem-cor"></div>
+  <div class="headercaixaselecao"></div>
+  <div class="hofri"></div>
+  <div class="sheoldred"></div>
+  <div class="barato"></div>
+  <div class="monogreen"></div>
+  <div class="urza"></div>
+  <div class="drawcontrol"></div>
+  <div class="headercaixa">
+    <div class="headercaixamenor"></div>
+  <a href="index.html">
+    <button class="logo-button logo-botao"></button>
+  </a>
+  <div class="center-buttons">
+    <a href="paginaprocura.html">
+    <button class="header-button carta-botao"></button>
+    </a>
+    <a href="paginadecks.html">
+      <button class="header-button deck-botao"></button>
+    </a>
+  </div>
+
+
+</body>
+</html>

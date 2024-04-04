@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScryTAP Deckbuiler</title>
+  <style>
+  body {
+    background-color: #251232; 
+  }
+  .headercaixa {
+    background-color: #5B3774;
+    width: 100%;
+    height: 13%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding-left: 20px;
+    background-attachment: fixed;
+  }
+  .headercaixamenor{
+    background-color: #8a69a1;
+    width: 100%;
+    height: 2%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    align-items: center;
+    background-attachment: fixed;
+  }
+    .texto1 {
+      background-color: transparent;
+      font-family: Arial;
+      position: absolute;
+      color: #a475c6;
+      z-index: 2;
+    }
+    .texto2, .texto3, .texto4 {
+      background-color: transparent;
+      font-family: Arial;
+      font-style: italic;
+      position: absolute;
+      color: #ffffff;
+      z-index: 2;
+    }
+    .texto5 {
+      background-color: transparent;
+      font-family: Arial;
+      position: absolute;
+      color: #9500ff;
+      z-index: 2;
+    }
+    .texto1 {
+      font-size: 30px;
+      width: 500px;
+      height: 50px;
+      top: 200px;
+      left: 100px;
+    }
+    .texto2 {
+      font-size: 20px;
+      width: 500px;
+      height: 50px;
+      top: 210px;
+      left: 525px;
+    }
+    .texto3 {
+      font-size: 15px;
+      width: 85%;
+      height: 50px;
+      top: 240px;
+      left: 100px;
+    }
+    .texto4 {
+      font-size: 14px;
+      width: 85%;
+      height: 50px;
+      top: 250px;
+      left: 200px;
+    }
+    .texto5 {
+      font-size: 15px;
+      width: 85%;
+      height: 50px;
+      top: 310px;
+      left: 290px;
+    }
+    .center-buttons {
+      display: flex;
+    }
+    .botao-formatos:hover {
+      filter: brightness(140%);
+    }
+    .header-button {
+      width: 125px;
+      height: 30px;
+      background-color: transparent;
+      background-size: cover;
+      border: none;
+      margin: 0 5px; 
+      cursor: pointer; 
+    }
+    .logo-button {
+        width: 150px;
+        height: 50px;
+        background-color: transparent;
+        background-size: cover;
+        border: none;
+        margin: 0 5px; 
+        cursor: pointer;  
+    }
+    .logo-botao{
+      background-image: url("logo2.png");
+    }
+    .carta-botao {
+      background-image: url("cartasbotao.png");
+    }
+    .deck-botao {
+      background-image: url("decksbotao.png");
+    }
+    .deckbuilder-botao {
+      background-image: url("deckbuilder.png");
+      width: 200px;
+      height: 30px;
+    }
+    .branco {
+      background-image: url("Branco.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 350px;
+      left: 850px;
+    }
+    .azul {
+      background-image: url("Azul.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 350px;
+      left: 1070px;
+    }
+    .preto {
+      background-image: url("Preto.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 350px;
+      left: 1290px;
+    }
+    .vermelho {
+      background-image: url("Vermelho.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 420px;
+      left: 850px;
+    }
+    .verde {
+      background-image: url("Verde.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 420px;
+      left: 1070px;
+    }
+    .sem-cor {
+      background-image: url("Sem-cor.png");
+      width: 200px;
+      height: 53px;
+      position: absolute;
+      top: 420px;
+      left: 1290px;
+    }
+    .deck-botao:hover {
+      filter: brightness(140%);
+    }
+    .deckbuilder-botao:hover {
+        filter: brightness(140%);
+    }
+    .carta-botao:hover {
+        filter: brightness(140%);
+    }
+      
+</style>
+</head>
+    
+<body>
+  <div class="texto1">Decks de Magic: the Gathering:</div>
+  <div class="texto2">Crie seu deck</div>
+  <div class="texto3">Crie seu proprio deck de Magic, com sua propria flair, usando quaisquer cartas desejar! <br>Cansado de procurar, ou so quer achar uma carta?</div>
+  <div class="texto4">Explore nossas listas de cartas!</div>
+  <div class="texto5">Escolha uma ou mais cores:</div>
+  <div class="headercaixa">
+  <div class="branco"></div>
+  <div class="azul"></div>
+  <div class="preto"></div>
+  <div class="vermelho"></div>
+  <div class="verde"></div>
+  <div class="sem-cor"></div>
+    <div class="headercaixamenor"></div>
+    <a href="index.html">
+        <button class="logo-button logo-botao"></button>
+    </a>
+    <div class="center-buttons">
+        <a href="paginaprocura.html">
+            <button class="header-button carta-botao "></button>
+        </a>
+        <a href="paginadecks.html">
+            <button class="header-button deck-botao"></button>
+        </a>
+        <a href="paginamontedeck.html">
+            <button class="header-button deckbuilder-botao"></button>
+        </a>
+    </div> 
+    </div>
+</body>
+</html>

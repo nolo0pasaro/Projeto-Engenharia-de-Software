@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScryTAP Deckbuiler</title>
+  <style>
+  body {
+    background-color: #251232; 
+   
+  }
+
+  .primeiro-botao {
+        background-image: url("art1.png");
+      }
+      .segundo-botao {
+        background-image: url("art1.png");
+      }
+      .terceiro-botao {
+        background-image: url("art1.png")
+      }
+
+      .center-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-button button {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  padding: 0;
+  width: 235px;
+  height: 335px;
+  cursor: pointer;
+  margin: 0 5px; 
+}
+
+
+  .headercaixa {
+    background-color: #5B3774;
+    width: 100%;
+    height: 13%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding-left: 20px;
+    background-attachment: fixed;
+  }
+  .headercaixamenor{
+    background-color: #8a69a1;
+    width: 100%;
+    height: 2%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    align-items: center;
+    background-attachment: fixed;
+  }
+   
+  .center-button p {
+  color: white; 
+}
+
+
+
+
+    .center-buttons {
+      display: flex;
+    }
+    .botao-formatos:hover {
+      filter: brightness(140%);
+    }
+    .header-button {
+      width: 125px;
+      height: 30px;
+      background-color: transparent;
+      background-size: cover;
+      border: none;
+      margin: 0 5px; 
+      cursor: pointer; 
+    }
+    .logo-button {
+        width: 150px;
+        height: 50px;
+        background-color: transparent;
+        background-size: cover;
+        border: none;
+        margin: 0 5px; 
+        cursor: pointer;  
+    }
+    .logo-botao{
+      background-image: url("logo2.png");
+    }
+    .carta-botao {
+      background-image: url("cartasbotao.png");
+    }
+    .deck-botao {
+      background-image: url("decksbotao.png");
+    }
+    .deckbuilder-botao {
+      background-image: url("deckbuilder.png");
+      width: 200px;
+      height: 30px;
+    }
+    
+    .deck-botao:hover {
+      filter: brightness(140%);
+    }
+    .deckbuilder-botao:hover {
+        filter: brightness(140%);
+    }
+    .carta-botao:hover {
+        filter: brightness(140%);
+    }
+      
+</style>
+</head>
+    
+<body>
+
+  <div class="center-button">
+    <div>
+        <button class="primeiro-botao"></button>
+      </a>
+      <p>Texto </p>
+    </div>
+    <div>
+        <button class="segundo-botao"></button>
+      </a>
+      <p>Texto</p>
+    </div>
+    <div>
+        <button class="terceiro-botao"></button>
+      </a>
+      <p>Texto</p>
+    </div>
+  </div>
+  
+
+
+
+
+
+  <div class="headercaixa">
+
+  <div class="sem-cor"></div>
+    <div class="headercaixamenor"></div>
+    <a href="index.html">
+        <button class="logo-button logo-botao"></button>
+    </a>
+    <div class="center-buttons">
+        <a href="paginaprocura.html">
+            <button class="header-button carta-botao "></button>
+        </a>
+        <a href="paginadecks.html">
+            <button class="header-button deck-botao"></button>
+        </a>
+        <a href="paginamontedeck.html">
+            <button class="header-button deckbuilder-botao"></button>
+        </a>
+    </div> 
+    </div>
+</body>
+</html>

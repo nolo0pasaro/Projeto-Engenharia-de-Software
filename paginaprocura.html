@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de cartas</title>
+</head>
+<body>
+    <button onclick="voltar()">voltar</button>
+
+
+
+
+
+    <h1>Pesquisa de cartas</h1>
+
+    <div>
+        <h2>Filtros:</h2>
+        <label><input type="checkbox" class="color-filter" value="preto"> Preto</label>
+        <label><input type="checkbox" class="color-filter" value="branco"> Branco</label>
+        <label><input type="checkbox" class="color-filter" value="azul"> Azul</label>
+        <label><input type="checkbox" class="color-filter" value="vermelho"> Vermelho</label>
+        <label><input type="checkbox" class="color-filter" value="verde"> Verde</label>
+        <label><input type="checkbox" class="color-filter" value="incolor"> Incolor</label>
+    </div>
+    <div>
+        <h2>Color Filter Type:</h2>
+        <select id="color-filter-type">
+        <option value="or">OU</option>
+        <option value="and">E</option>
+        <option value="not">NÃO</option>
+    </select>
+</div>
+<div>
+    <h2>Busca por Nome:</h2>
+    <input type="text" id="name-search" placeholder="eldrazi">
+</div>
+<div>
+    <h2>Busca por texto:</h2>
+    <input type="text" id="text-search" placeholder="compre card">
+</div>
+<button id="search-btn">Buscar</button>
+<div id="results">
+    <!-- Resultados aqui -->
+</div>
+<script>
+ function voltar() {
+    // You can use window.location to navigate to the index.html page
+    window.location.href = "index.html";
+}
+ 
+ 
+ 
+ document.addEventListener('DOMContentLoaded', function() {
+
+    let items = []
+
+    // Carrega a lista de cartas
+    fetch('cards.json')
+        .then(response => response.json())
+        .then(data => {
+        items = data;
+    })
+    .catch(error => console.error('Erro ao carregar lista de cartas:', error));
+    const colorFilters = document.querySelectorAll('.color-filter');
+    const colorFilterType = document.getElementById('color-filter-type');
+    const nameSearchInput = document.getElementById('name-search');
+    const textSearchInput = document.getElementById('text-search');
+    const searchBtn = document.getElementById('search-btn');
+    const resultsContainer = document.getElementById('results');
+    function filterItems() {
+        const selectedColors = Array.from(colorFilters)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+        const nameSearchText = nameSearchInput.value.trim().toLowerCase();
+        const textSearchText = textSearchInput.value.trim().toLowerCase();
+        const filteredItems = items.filter(item => {
+        const hasSelectedColors = selectedColors.length === 0 || selectedColors.some(color => item.colors.includes(color));
+        const matchesNameSearch = nameSearchText === '' || item.nome.toLowerCase().includes(nameSearchText);
+        const matchesTextSearch = textSearchText === '' || item.texto.toLowerCase().includes(textSearchText);
+        if (colorFilterType.value === 'or') {
+            return hasSelectedColors && matchesNameSearch && matchesTextSearch;
+        } else if (colorFilterType.value === 'and') {
+            return hasSelectedColors && matchesNameSearch && matchesTextSearch && item.colors.length === selectedColors.length;
+        } else if (colorFilterType.value === 'not') {
+            return !hasSelectedColors && matchesNameSearch && matchesTextSearch;
+        }
+    });
+    displayResults(filteredItems);
+    }
+    function displayResults(items) {
+        resultsContainer.innerHTML = '';
+    if (items.length === 0) {
+        resultsContainer.innerHTML = '<p>Nenhum resultado.</p>';
+        return;
+    }
+    const ul = document.createElement('ul');
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome}: ${item.texto}`;
+        ul.appendChild(li);
+    });
+    resultsContainer.appendChild(ul);
+    }
+    searchBtn.addEventListener('click', filterItems);
+});
+</script>
+</body>
+</html>

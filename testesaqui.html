@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de cartas</title>
+</head>
+<body>
+    <h1>Pesquisa de cartas</h1>
+
+    <div>
+        <h2>Filtros:</h2>
+        <label><input type="checkbox" class="color-filter" value="preto"> Preto</label>
+        <label><input type="checkbox" class="color-filter" value="branco"> Branco</label>
+        <label><input type="checkbox" class="color-filter" value="azul"> Azul</label>
+        <label><input type="checkbox" class="color-filter" value="vermelho"> Vermelho</label>
+        <label><input type="checkbox" class="color-filter" value="verde"> Verde</label>
+        <label><input type="checkbox" class="color-filter" value="incolor"> Incolor</label>
+    </div>
+    <div>
+        <h2>Color Filter Type:</h2>
+        <select id="color-filter-type">
+        <option value="or">OU</option>
+        <option value="and">E</option>
+        <option value="not">NÃO</option>
+    </select>
+</div>
+<div>
+    <h2>Busca por Nome:</h2>
+    <input type="text" id="name-search" placeholder="eldrazi">
+</div>
+<div>
+    <h2>Busca por texto:</h2>
+    <input type="text" id="text-search" placeholder="compre card">
+</div>
+<button id="search-btn">Buscar</button>
+<div id="results">
+    <!-- Resultados aqui -->
+</div>
+<script src="script.js"></script>
+</body>
+</html>

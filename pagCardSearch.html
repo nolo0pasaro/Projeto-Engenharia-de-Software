@@ -1,0 +1,272 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>procura de cartas</title>
+<style>
+      body {
+      background-color: #251232; 
+    }
+  .headercaixa {
+      background-color: #5B3774;
+      width: 100%;
+      height: 13%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      padding-left: 20px;
+  }
+  
+  .headercaixamenor{
+    background-color: #8a69a1;
+    width: 100%;
+    height: 2%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    align-items: center;
+  }
+  .headerlogo {
+      max-height: 50px;
+      margin-right: 20px;
+      position: relative;
+      z-index: 9; 
+  }
+  .texto1, .texto2, .texto3, .texto4, .escolha-formatos, .escolha-cores {
+    background-color: transparent;
+    font-family: Arial;
+    position: absolute;
+    color: #a475c6;
+    z-index: 2;
+  }
+  .texto1, .texto2, .texto3, .texto4, .escolha-formatos {
+    font-size: 25px;
+  }
+  .texto1 {
+    width: 500px;
+    height: 50px;
+    top: 200px;
+    left: 100px;
+  }
+  .texto2 {
+    width: 500px;
+    height: 50px;
+    top: 205px;
+    left: 530px;
+  }
+  .texto3 {
+    width: 85%;
+    height: 50px;
+    top: 270px;
+    left: 100px;
+  }
+  .texto4 {
+    width: 90%;
+    height: 50px;
+    top: 350px;
+    left: 100px;
+  }
+  .escolha-formatos {
+    width: 500px;
+    height: 50px;
+    top: 400px;
+    left: 100px;
+  }
+  .formatos, .mais, .branco, .azul, .preto, .vermelho, .verde, .sem-cor, .headercaixaselecao, .hofri, .sheoldred, .barato, .monogreen, .urza, .drawcontrol {
+    position: absolute;
+    z-index: 2;
+  }
+  .formatos {
+    background-image: url("Selecao-formatos.png");
+    width: 450px;
+    height: 70px;
+    top: 440px;
+    left: 100px;
+  }
+  .mais {
+    background-image: url("mais.png");
+    width: 70px;
+    height: 70px;
+    top: 440px;
+    left: 570px;
+  }
+  .branco, .azul, .preto, .vermelho, .verde, .sem-cor {
+    width: 200px;
+    height: 53px;
+    top: 600px;
+  }
+  .branco {
+    left: 100px;
+  }
+  .azul {
+    left: 320px;
+  }
+  .preto {
+    left: 540px;
+  }
+  .vermelho {
+    left: 760px;
+  }
+  .verde {
+    left: 980px;
+  }
+  .sem-cor {
+    left: 1200px;
+  }
+  .headercaixaselecao {
+    background-color: #5B3774;
+    width: 1300px;
+    height: 40px;
+    top: 680px;
+    left: 100px;
+    z-index: 1;
+  }
+  .hofri, .sheoldred, .barato, .monogreen, .urza, .drawcontrol {
+    width: 200px;
+    height: 140px;
+    top: 800px;
+  }
+  .hofri {
+    left: 100px;
+  }
+  .sheoldred {
+    left: 320px;
+  }
+  .barato {
+    left: 540px;
+  }
+  .monogreen {
+    left: 760px;
+  }
+  .urza {
+    left: 980px;
+  }
+  .drawcontrol {
+    left: 1200px;
+  }
+  .center-buttons {
+    display: flex;
+  }
+  .botao-formatos:hover, .header-button:hover {
+    filter: brightness(140%);
+  }
+  .header-button {
+    width: 125px;
+    height: 30px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    margin: 0 5px; 
+    cursor: pointer; 
+
+  }
+  .carta-botao, .deck-botao {
+    width: 125px;
+    height: 30px;
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    margin: 0 5px; 
+    cursor: pointer; 
+  }
+  .carta-botao {
+    background-image: url("cartasbotao.png");
+  }
+
+  .deck-botao {
+    background-image: url("decksbotao.png");
+  }
+</style>
+</head>
+    
+<body>
+  <div class="texto1">Cartas de Magic: the Gathering:</div>
+  <div class="texto2">Lista de cartas</div>
+  <div class="texto3">Explore uma lista completa de decks de Magic: the Gathering!  Ache rapidamente aquilo que precisa usando nossos filtros. Novos decks diariamente, baseado nas criações de jogadores, ou listas oficias da Wizards of the Coast! 
+    Queremos ter certeza que iremos ter os melhores decks para  o meta atual, ou os melhores decks para jogar casualmente com seus amigos!
+  </div>
+  <div class="texto4">Cansado de procurar, ou só quer achar uma carta? Explore nossas listas de cartas</div>
+  <div class="escolha-formatos">Escolha um ou mais formatos:</div>
+  <div class="formatos"></div>
+  <div class="mais"></div>
+  <div class="escolha-cores">Escolha uma ou mais cores:</div>
+  <div class="branco"></div>
+  <div class="azul"></div>
+  <div class="preto"></div>
+  <div class="vermelho"></div>
+  <div class="verde"></div>
+  <div class="sem-cor"></div>
+  <div class="headercaixaselecao"></div>
+  <div class="hofri"></div>
+  <div class="sheoldred"></div>
+  <div class="barato"></div>
+  <div class="monogreen"></div>
+  <div class="urza"></div>
+  <div class="drawcontrol"></div>
+  <div class="headercaixa">
+    <div class="headercaixamenor"></div>
+    <img class="headerlogo" src="logo2.png" alt="SurvelTAP Logo">
+  <a href="index.html">
+    <button style="font-size:25px; background-color: grey; color: lightblue; border-radius: 25px;">voltar </button>
+  </a>
+    <button class="header-button carta-botao"></button>
+    </a>
+    <a href="paginadecks.html">
+    <button class="header-button deck-botao"></button>
+    </a>
+  </div>
+  <h1>procura</h1>
+</body>
+</html>
+```
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca cartas</title>
+</head>
+<body>
+    <h1>Busca cartas</h1>
+
+    <div>
+        <h2>Cores:</h2>
+        <label><input type="checkbox" class="color-filter" value="preto"> Preto</label>
+        <label><input type="checkbox" class="color-filter" value="branco"> Branco</label>
+        <label><input type="checkbox" class="color-filter" value="azul"> Azul</label>
+        <label><input type="checkbox" class="color-filter" value="vermelho"> Vermelho</label>
+        <label><input type="checkbox" class="color-filter" value="verde"> Verde</label>
+        <label><input type="checkbox" class="color-filter" value="verde"> Incolor</label>
+    </div>
+    <div>
+        <h2>Tipo de Filtro de Cor:</h2>
+        <select id="color-filter-type">
+        <option value="or">OU</option>
+        <option value="and">E</option>
+        <option value="not">NÃO</option>
+    </select>
+</div>
+<div>
+    <h2>Nome:</h2>
+    <input type="text" id="name-search">
+</div>
+<div>
+    <h2>Search by Text:</h2>
+    <input type="text" id="text-search">
+</div>
+<button id="search-btn">Search</button>
+<div id="results">
+    <!-- Resultados -->
+</div>
+<script src="script.js"></script>
+</body>
+</html>
