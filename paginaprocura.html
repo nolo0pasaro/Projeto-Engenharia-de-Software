@@ -1,109 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesquisa de cartas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa de Cartas</title>
+<style>
+ /* aqui fica o style do codigo */
+ body {
+   font-family: Arial, sans-serif;
+ }
+ #results {
+   margin-top: 20px;
+ }
+ .card {
+   border: 1px solid #ccc;
+   padding: 10px;
+   margin-bottom: 10px;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   position: relative;
+ }
+ .card img {
+   max-width: 100px;
+   max-height: 150px;
+   margin-right: 10px;
+   transition: transform 0.3s ease-in-out;
+   cursor: pointer; /* se for clicavel o curor vira uma maol */
+ }
+ .card img:hover {
+   transform: scale(1.2); /*  escala da imagem quando o mouse passa por cima */
+ }
+ .larger-image {
+   position: absolute;
+   z-index: 9999;
+   display: none;
+   top: 0;
+   left: 100%;
+   padding-left: 10px;
+   max-width: 200px;
+   max-height: 300px;
+ }
+ .card:hover .larger-image {
+   display: block;
+ }
+ .card:hover .card img {
+   opacity: 0.5; /*  opacidade da imagem quando o mouse passa por cima */
+ }
+ .card-info {
+   flex: 1;
+ }
+ .color-btn {
+   margin-right: 5px;
+ }
+ .color-btn.clicked {
+   filter: brightness(30%);
+ }
+ .back-to-home {
+   margin-top: 20px;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+ }
+</style>
 </head>
 <body>
-    <button onclick="voltar()">voltar</button>
+<h1>Pesquisa de Cartas</h1>
 
-
-
-
-
-    <h1>Pesquisa de cartas</h1>
-
-    <div>
-        <h2>Filtros:</h2>
-        <label><input type="checkbox" class="color-filter" value="preto"> Preto</label>
-        <label><input type="checkbox" class="color-filter" value="branco"> Branco</label>
-        <label><input type="checkbox" class="color-filter" value="azul"> Azul</label>
-        <label><input type="checkbox" class="color-filter" value="vermelho"> Vermelho</label>
-        <label><input type="checkbox" class="color-filter" value="verde"> Verde</label>
-        <label><input type="checkbox" class="color-filter" value="incolor"> Incolor</label>
-    </div>
-    <div>
-        <h2>Color Filter Type:</h2>
-        <select id="color-filter-type">
-        <option value="or">OU</option>
-        <option value="and">E</option>
-        <option value="not">NÃO</option>
-    </select>
-</div>
+<!-- filtros -->
 <div>
-    <h2>Busca por Nome:</h2>
-    <input type="text" id="name-search" placeholder="eldrazi">
+ <label for="name">Nome:</label>
+ <input type="text" id="name">
+
+ <!-- botoes para as cores -->
+ <div>
+   <button class="color-btn" onclick="toggleColor('W')">Branco</button>
+   <button class="color-btn" onclick="toggleColor('U')">Azul</button>
+   <button class="color-btn" onclick="toggleColor('B')">Preto</button>
+   <button class="color-btn" onclick="toggleColor('R')">Vermelho</button>
+   <button class="color-btn" onclick="toggleColor('G')">Verde</button>
+   <button class="color-btn" onclick="toggleColor('')">Todas</button>
+ </div>
+
+ <button onclick="searchCards()">Pesquisar</button>
 </div>
-<div>
-    <h2>Busca por texto:</h2>
-    <input type="text" id="text-search" placeholder="compre card">
-</div>
-<button id="search-btn">Buscar</button>
-<div id="results">
-    <!-- Resultados aqui -->
-</div>
+
+<!-- print dos resultados -->
+<div id="results"></div>
+
+<button class="back-to-home" onclick="goToHomePage()">Voltar </button>
+
 <script>
- function voltar() {
-    // You can use window.location to navigate to the index.html page
-    window.location.href = "index.html";
+var selectedColors = []; // cores dos botoes
+
+function toggleColor(color) {
+ var index = selectedColors.indexOf(color);
+ if (index === -1) {
+   // selecionar cor (no botao ok)
+   selectedColors.push(color);
+   event.target.classList.add('clicked');
+ } else {
+   // remover cor selecionada
+   selectedColors.splice(index, 1);
+   event.target.classList.remove('clicked');
+ }
 }
- 
- 
- 
- document.addEventListener('DOMContentLoaded', function() {
 
-    let items = []
+function searchCards() {
+ var name = document.getElementById('name').value.trim();
+ var colors = selectedColors;
 
-    // Carrega a lista de cartas
-    fetch('cards.json')
+ var apiUrl = 'https://api.scryfall.com/cards/search?q=';
+ if (name !== '') {
+   apiUrl += 'name:"' + name + '"';
+ }
+ if (colors.length > 0) {
+   colors.forEach(color => {
+     apiUrl += '+color:"' + color + '"';
+   });
+ }
+
+ // limpar histórico
+ document.getElementById('results').innerHTML = '';
+
+ // dados da API <<<< CUIDADO
+       fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-        items = data;
-    })
-    .catch(error => console.error('Erro ao carregar lista de cartas:', error));
-    const colorFilters = document.querySelectorAll('.color-filter');
-    const colorFilterType = document.getElementById('color-filter-type');
-    const nameSearchInput = document.getElementById('name-search');
-    const textSearchInput = document.getElementById('text-search');
-    const searchBtn = document.getElementById('search-btn');
-    const resultsContainer = document.getElementById('results');
-    function filterItems() {
-        const selectedColors = Array.from(colorFilters)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
-        const nameSearchText = nameSearchInput.value.trim().toLowerCase();
-        const textSearchText = textSearchInput.value.trim().toLowerCase();
-        const filteredItems = items.filter(item => {
-        const hasSelectedColors = selectedColors.length === 0 || selectedColors.some(color => item.colors.includes(color));
-        const matchesNameSearch = nameSearchText === '' || item.nome.toLowerCase().includes(nameSearchText);
-        const matchesTextSearch = textSearchText === '' || item.texto.toLowerCase().includes(textSearchText);
-        if (colorFilterType.value === 'or') {
-            return hasSelectedColors && matchesNameSearch && matchesTextSearch;
-        } else if (colorFilterType.value === 'and') {
-            return hasSelectedColors && matchesNameSearch && matchesTextSearch && item.colors.length === selectedColors.length;
-        } else if (colorFilterType.value === 'not') {
-            return !hasSelectedColors && matchesNameSearch && matchesTextSearch;
-        }
-    });
-    displayResults(filteredItems);
-    }
-    function displayResults(items) {
-        resultsContainer.innerHTML = '';
-    if (items.length === 0) {
-        resultsContainer.innerHTML = '<p>Nenhum resultado.</p>';
-        return;
-    }
-    const ul = document.createElement('ul');
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.nome}: ${item.texto}`;
-        ul.appendChild(li);
-    });
-    resultsContainer.appendChild(ul);
-    }
-    searchBtn.addEventListener('click', filterItems);
-});
+          data.data.forEach(card => {
+            // info de carta <<<
+            var cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
+
+            var image = document.createElement('img');
+            image.src = card.image_uris.normal; // >>>URL das cartas cuidado!!!!<<<<
+
+            image.addEventListener('click', function() {
+              const cardInfoURL = 'cartainfo.html?name=' + encodeURIComponent(card.name) +
+                                  '&artist=' + encodeURIComponent(card.artist) +
+                                  '&effect=' + encodeURIComponent(card.oracle_text ? card.oracle_text : "Sem efeito disponível") +
+                                  '&colors=' + encodeURIComponent(card.colors.join(',')) +
+                                  '&imageURL=' + encodeURIComponent(card.image_uris.large);
+              window.location.href = cardInfoURL;
+            });
+
+       var largerImage = document.createElement('img');
+       largerImage.src = card.image_uris.large;
+       largerImage.classList.add('larger-image');
+
+       cardDiv.appendChild(image);
+       cardDiv.appendChild(largerImage);
+
+       var cardInfo = document.createElement('div');
+       cardInfo.classList.add('card-info');
+       cardInfo.innerHTML = '<strong>Nome:</strong> ' + card.name + '<br>' +
+                           '<strong>Artista:</strong> ' + card.artist + '<br>' +
+                           '<strong>Efeito:</strong> ' + (card.oracle_text ? card.oracle_text : "Sem efeito disponível") + '<br>' +
+                           '<strong>Cores:</strong> ' + card.colors.join(', ');
+       cardDiv.appendChild(cardInfo);
+       document.getElementById('results').appendChild(cardDiv);
+     });
+   })
+   .catch(error => console.error('Erro:', error));
+}
+
+function goToHomePage() {
+  window.location.href = 'index.html';
+}
 </script>
+
 </body>
 </html>
