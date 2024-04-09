@@ -1,176 +1,244 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pesquisa de Cartas</title>
-<style>
- /* aqui fica o style do codigo */
- body {
-   font-family: Arial, sans-serif;
- }
- #results {
-   margin-top: 20px;
- }
- .card {
-   border: 1px solid #ccc;
-   padding: 10px;
-   margin-bottom: 10px;
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   position: relative;
- }
- .card img {
-   max-width: 100px;
-   max-height: 150px;
-   margin-right: 10px;
-   transition: transform 0.3s ease-in-out;
-   cursor: pointer; /* se for clicavel o curor vira uma maol */
- }
- .card img:hover {
-   transform: scale(1.2); /*  escala da imagem quando o mouse passa por cima */
- }
- .larger-image {
-   position: absolute;
-   z-index: 9999;
-   display: none;
-   top: 0;
-   left: 100%;
-   padding-left: 10px;
-   max-width: 200px;
-   max-height: 300px;
- }
- .card:hover .larger-image {
-   display: block;
- }
- .card:hover .card img {
-   opacity: 0.5; /*  opacidade da imagem quando o mouse passa por cima */
- }
- .card-info {
-   flex: 1;
- }
- .color-btn {
-   margin-right: 5px;
- }
- .color-btn.clicked {
-   filter: brightness(30%);
- }
- .back-to-home {
-   margin-top: 20px;
-   padding: 10px 20px;
-   background-color: #007bff;
-   color: white;
-   border: none;
-   border-radius: 5px;
-   cursor: pointer;
- }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesquisa de Cartas</title>
+  <style>
+    /* Aqui fica o estilo do código */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #results {
+      margin-top: 20px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      position: relative;
+    }
+
+    .card img {
+      max-width: 100px;
+      max-height: 150px;
+      margin-right: 10px;
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+      /* Se for clicável o cursor vira uma mão */
+    }
+
+    .card img:hover {
+      transform: scale(1.5);
+      /* escala da imagem quando o mouse passa por cima */
+    }
+
+    .larger-image {
+      position: absolute;
+      z-index: 9999;
+      display: none;
+      top: 0;
+      left: 100%;
+      padding-left: 10px;
+      max-width: 200px;
+      max-height: 300px;
+    }
+
+    .card:hover .larger-image {
+      display: block;
+    }
+
+    .card:hover .card img {
+      opacity: 0.5;
+      /* opacidade da imagem quando o mouse passa por cima */
+    }
+
+    .card-info {
+      flex: 1;
+    }
+
+    .color-btn {
+      margin-right: 5px;
+    }
+
+    .color-btn.clicked {
+      filter: brightness(30%);
+    }
+
+    /* Estilos para a paginação */
+    #pagination {
+      margin-top: 20px;
+    }
+
+    #pagination button {
+      margin-right: 5px;
+    }
+  </style>
 </head>
+
 <body>
-<h1>Pesquisa de Cartas</h1>
+  <h1>Pesquisa de Cartas</h1>
 
-<!-- filtros -->
-<div>
- <label for="name">Nome:</label>
- <input type="text" id="name">
+  <!-- Filtros -->
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name">
 
- <!-- botoes para as cores -->
- <div>
-   <button class="color-btn" onclick="toggleColor('W')">Branco</button>
-   <button class="color-btn" onclick="toggleColor('U')">Azul</button>
-   <button class="color-btn" onclick="toggleColor('B')">Preto</button>
-   <button class="color-btn" onclick="toggleColor('R')">Vermelho</button>
-   <button class="color-btn" onclick="toggleColor('G')">Verde</button>
-   <button class="color-btn" onclick="toggleColor('')">Todas</button>
- </div>
+    <!-- botoes do opcao de   filtro por cor -->
+    <div>
+      <input type="radio" id="only" name="colorOption" value="only" checked>
+      <label for="only">Apenas</label>
 
- <button onclick="searchCards()">Pesquisar</button>
-</div>
+      <input type="radio" id="and" name="colorOption" value="and">
+      <label for="and">E</label>
 
-<!-- print dos resultados -->
-<div id="results"></div>
+      <input type="radio" id="not" name="colorOption" value="not">
+      <label for="not">Não</label>
+    </div>
 
-<button class="back-to-home" onclick="goToHomePage()">Voltar </button>
+    <!-- pros botoess\ ficarem com a mesma cor quando clicar-->
 
-<script>
-var selectedColors = []; // cores dos botoes
+    <button onclick="pesquisarCartas()">Pesquisar</button>
+  </div>
 
-function toggleColor(color) {
- var index = selectedColors.indexOf(color);
- if (index === -1) {
-   // selecionar cor (no botao ok)
-   selectedColors.push(color);
-   event.target.classList.add('clicked');
- } else {
-   // remover cor selecionada
-   selectedColors.splice(index, 1);
-   event.target.classList.remove('clicked');
- }
-}
 
-function searchCards() {
- var name = document.getElementById('name').value.trim();
- var colors = selectedColors;
+  <!-- cores -->
+  <div>
+    <button class="color-btn" onclick="alterarCor('W', event)">Branco</button>
+    <button class="color-btn" onclick="alterarCor('U', event)">Azul</button>
+    <button class="color-btn" onclick="alterarCor('B', event)">Preto</button>
+    <button class="color-btn" onclick="alterarCor('R', event)">Vermelho</button>
+    <button class="color-btn" onclick="alterarCor('G', event)">Verde</button>
+    <button class="color-btn" onclick="alterarCor('', event)">Todas</button>
 
- var apiUrl = 'https://api.scryfall.com/cards/search?q=';
- if (name !== '') {
-   apiUrl += 'name:"' + name + '"';
- }
- if (colors.length > 0) {
-   colors.forEach(color => {
-     apiUrl += '+color:"' + color + '"';
-   });
- }
+  </div>
 
- // limpar histórico
- document.getElementById('results').innerHTML = '';
+  <!-- mostrar os resultados -->
+  <div id="results"></div>
 
- // dados da API <<<< CUIDADO
-       fetch(apiUrl)
+  <!-- controle de paginação -->
+  <div id="pagination">
+    <button onclick="paginaAnterior()">Anterior</button>
+    <span id="paginaAtual">1</span>
+    <button onclick="proximaPagina()">Próxima</button>
+  </div>
+
+  <script>
+    var coresSelecionadas = []; // cores selecionadas
+    var paginaAtual = 1;
+    var cartasPorPagina = 10; // cartas por pagi a
+
+    // funcao para escolher a cor
+    function alterarCor(cor, evento) {
+      var indice = coresSelecionadas.indexOf(cor);
+      if (indice === -1) {
+        // escolher a cor
+        coresSelecionadas.push(cor);
+        evento.target.classList.add('clicked');
+      } else {
+        // tirar a cor
+        coresSelecionadas.splice(indice, 1);
+        evento.target.classList.remove('clicked');
+      }
+    }
+
+    // Função para ir para a pagina anterior
+    function paginaAnterior() {
+      if (paginaAtual > 1) {
+        paginaAtual--;
+        pesquisarCartas();
+      }
+    }
+
+    // funcao para ir para a prox pag
+    function proximaPagina() {
+      paginaAtual++;
+      pesquisarCartas();
+    }
+
+    // funcao para pesquisar as cartas
+    function pesquisarCartas() {
+      var nome = document.getElementById('name').value.trim();
+      var cores = coresSelecionadas;
+      var opcao = document.querySelector('input[name="colorOption"]:checked').value;
+
+      var apiUrl = 'https://api.scryfall.com/cards/search?q=';
+      if (nome !== '') {
+        apiUrl += 'name:"' + nome + '"';
+      }
+      if (cores.length > 0) {
+        cores.forEach(cor => {
+          // consultar api
+          if (opcao === 'only' && cores.length > 0) {
+            apiUrl += '+color="' + cores.join('') + '"';
+          } else if (opcao === 'and') {
+            apiUrl += '+color>="' + cor + '"';
+          } else if (opcao === 'not') {
+            apiUrl += '+-color:"' + cor + '"';
+          }
+        });
+      }
+
+      // parametro de de paginação
+      apiUrl += `&page=${paginaAtual}&per_page=${cartasPorPagina}`;
+
+      // limpar histórico
+      document.getElementById('results').innerHTML = '';
+
+      // buscar dados da API
+      fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
           data.data.forEach(card => {
-            // info de carta <<<
-            var cardDiv = document.createElement('div');
-            cardDiv.classList.add('card');
+            // info da carta
+            var divCarta = document.createElement('div');
+            divCarta.classList.add('card');
 
-            var image = document.createElement('img');
-            image.src = card.image_uris.normal; // >>>URL das cartas cuidado!!!!<<<<
+            var imagem = document.createElement('img');
+            imagem.src = card.image_uris.normal; // URL das cartas
 
-            image.addEventListener('click', function() {
-              const cardInfoURL = 'cartainfo.html?name=' + encodeURIComponent(card.name) +
-                                  '&artist=' + encodeURIComponent(card.artist) +
-                                  '&effect=' + encodeURIComponent(card.oracle_text ? card.oracle_text : "Sem efeito disponível") +
-                                  '&colors=' + encodeURIComponent(card.colors.join(',')) +
-                                  '&imageURL=' + encodeURIComponent(card.image_uris.large);
-              window.location.href = cardInfoURL;
+            imagem.addEventListener('click', function () {
+              const urlInfoCarta = 'cartainfo.html?name=' + encodeURIComponent(card.name) +
+                '&artist=' + encodeURIComponent(card.artist) +
+                '&effect=' + encodeURIComponent(card.oracle_text ? card.oracle_text : "Sem efeito disponível") +
+                '&cores=' + encodeURIComponent(card.colors.join(',')) +
+                '&imageURL=' + encodeURIComponent(card.image_uris.large);
+              window.location.href = urlInfoCarta;
             });
 
-       var largerImage = document.createElement('img');
-       largerImage.src = card.image_uris.large;
-       largerImage.classList.add('larger-image');
+            var imagemAmpliada = document.createElement('img');
+            imagemAmpliada.src = card.image_uris.large;
+            imagemAmpliada.classList.add('larger-image');
 
-       cardDiv.appendChild(image);
-       cardDiv.appendChild(largerImage);
+            divCarta.appendChild(imagem);
+            divCarta.appendChild(imagemAmpliada);
 
-       var cardInfo = document.createElement('div');
-       cardInfo.classList.add('card-info');
-       cardInfo.innerHTML = '<strong>Nome:</strong> ' + card.name + '<br>' +
-                           '<strong>Artista:</strong> ' + card.artist + '<br>' +
-                           '<strong>Efeito:</strong> ' + (card.oracle_text ? card.oracle_text : "Sem efeito disponível") + '<br>' +
-                           '<strong>Cores:</strong> ' + card.colors.join(', ');
-       cardDiv.appendChild(cardInfo);
-       document.getElementById('results').appendChild(cardDiv);
-     });
-   })
-   .catch(error => console.error('Erro:', error));
-}
+            var infoCarta = document.createElement('div');
+            infoCarta.classList.add('card-info');
+            infoCarta.innerHTML = '<strong>Nome:</strong> ' + card.name + '<br>' +
+              '<strong>Artista:</strong> ' + card.artist + '<br>' +
+              '<strong>Efeito:</strong> ' + (card.oracle_text ? card.oracle_text : "Sem efeito disponível") + '<br>' +
+              '<strong>Cores:</strong> ' + card.colors.join(', ');
+            divCarta.appendChild(infoCarta);
+            document.getElementById('results').appendChild(divCarta);
+          });
 
-function goToHomePage() {
-  window.location.href = 'index.html';
-}
-</script>
+          // Atualizar numero da página
+          document.getElementById('paginaAtual').innerText = paginaAtual;
+        })
+        .catch(error => console.error('Erro:', error));
+    }
 
+    // botao da pesquisa
+    document.getElementById('searchButton').addEventListener('click', pesquisarCartas);
+  </script>
 </body>
+
 </html>
