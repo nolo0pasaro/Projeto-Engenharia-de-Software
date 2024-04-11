@@ -46,7 +46,6 @@ Sendo um aplicativo WEB, o programa terá um alcance amplo: indo das telas dos c
    Estipula-se que o projeto custe, no mínimo, R$70,00 por ano. Uma assinatura mensal no Google Drive, para o armazenamento de dados de forma mais coerente e segura (dados de usuários e dos produtos). Isso não engloba o valor total do hosteamento do servidor.
 
 ## Fazendo o Acesso
-   Estipula-se que o projeto custe, no mínimo, R$70,00 por ano. Uma assinatura mensal no Google Drive, para o armazenamento de dados de forma mais coerente e segura (dados de usuários e dos produtos). Isso não engloba o valor total do hosteamento do servidor.
 
    
   O usuário entrará no site e terá três principais opções, dentre elas: Cartas, Decks e Monte seu Deck. Todas opções terão como objetivo fazer a procura num banco de dados relacionado ao objeto em questão, fazendo a procura e junção de tal num aglomerado baseado no input do usuário, fazendo uma pesquisa e devolvendo o resultado esperado.
@@ -55,6 +54,11 @@ Sendo um aplicativo WEB, o programa terá um alcance amplo: indo das telas dos c
   
 
   
+
+
+
+## Desenvolvedores
+
 
 Scrum Master: Saulo Manoel (@saulo.manoellb)
 Front-End: Walter Dimas, Caio Henrique (walter.dimas@souunit.com.br, caiohenrique.mcz@gmail.com)
