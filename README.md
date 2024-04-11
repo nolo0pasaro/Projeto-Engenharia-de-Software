@@ -61,5 +61,7 @@ Sendo um aplicativo WEB, o programa terá um alcance amplo: indo das telas dos c
 
 
 Scrum Master: Saulo Manoel (@saulo.manoellb)
+
 Front-End: Walter Dimas, Caio Henrique (walter.dimas@souunit.com.br, caiohenrique.mcz@gmail.com)
+
 Back-End: Saulo Manoel, Zhael Aaron (zhael.unit@gmail.com)
