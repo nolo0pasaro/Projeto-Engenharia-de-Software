@@ -36,3 +36,9 @@ Como?
 
 Por Quanto?
 	Estipula-se que o projeto custe, no mínimo, R$70,00 por ano. Uma assinatura mensal no Google Drive, para o armazenamento de dados de forma mais coerente e segura (dados de usuários e dos produtos). Isso não engloba o valor total do hosteamento do servidor.
+
+
+Scrum Master: Saulo Manoel @saulo.manoellb
+Front-End: Walter Dimas, Caio Henrique (walter.dimas@souunit.com.br, caiohenrique.mcz@gmail.com)
+Back-End: Saulo Manoel, Zhael Aaron (zhael.unit@gmail.com)
+
