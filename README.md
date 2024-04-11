@@ -50,7 +50,11 @@ Sendo um aplicativo WEB, o programa terá um alcance amplo: indo das telas dos c
    
   O usuário entrará no site e terá três principais opções, dentre elas: Cartas, Decks e Monte seu Deck. Todas opções terão como objetivo fazer a procura num banco de dados relacionado ao objeto em questão, fazendo a procura e junção de tal num aglomerado baseado no input do usuário, fazendo uma pesquisa e devolvendo o resultado esperado.
   
-    
+
+## Problema de Pesquisa 
+
+Será utilizado como forma de ordenação. O algoritimo terá como prioridade importar e exportar ideias e conceitos num meio físico; tal que, o usuário tenha não só como prioridade encontrar suas cartas, mas como encontrar novas cartas para sua coleção.
+ Será usado como base o artigo "_IBC Tracer: Web-Based Application for Online Tracing the Spread of Covid-19 in Indonesia Using BFS Algorithm_", com seu aprofundamento no sistema de pesquisa entre diversos filtros e opções diferentes de tangenciamento na pesquisa e compartilhamento de dados relacionados a um epicentro único, com queries inputs de usuários próprios. Sua formatação e idealização transformará o uso e pesquisa em algo mais rápido e prático, visto que _Magic_ abrange uma variedade muito alta de estampas únicas, com diferentes modelos ao passar dos anos.
   
 
   
