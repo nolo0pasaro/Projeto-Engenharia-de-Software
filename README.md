@@ -66,6 +66,6 @@ Será utilizado como forma de ordenação. O algoritimo terá como prioridade im
 
 Scrum Master: Saulo Manoel (@saulo.manoellb)
 
-Front-End: Walter Dimas, Caio Henrique (walter.dimas@souunit.com.br, caiohenrique.mcz@gmail.com)
+Front-End: Walter Dimas, Caio Henrique, Juan Leite (walter.dimas@souunit.com.br, caiohenrique.mcz@gmail.com, juancarlolr.10@gmail.com)
 
 Back-End: Saulo Manoel, Zhael Aaron (zhael.unit@gmail.com)
